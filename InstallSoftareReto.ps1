@@ -1,5 +1,10 @@
 & choco install python
-
+& choco install ilspy
+& choco install autohotkey
+& choco install postman
+& choco install nerd-fonts-firacode
+& choco install oh-my-posh
+& choco install nerd-fonts-cascadiacode
 
 
 git config --global user.name "Reto Wietlisbach"

@@ -25,7 +25,7 @@ $applications = @(
     'notepadplusplus.install',
     '7zip.install',
     'vscode.install',
-    'zoom', 
+    'zoom',
     'winscp.install'
 
 )
@@ -37,3 +37,16 @@ foreach ($app in $applications) {
 }
 
 Write-Host "All applications have been installed."
+
+# Download and install latest FilePilot
+$Url = "https://filepilot.tech/download/latest"
+$Installer = "$env:TEMP\FilePilotInstaller.exe"
+
+Start-BitsTransfer -Source $Url -Destination $Installer
+
+Start-Process $Installer -Wait
+
+
+choco install mingw
+choco install -y neovim git ripgrep wget fd unzip gzip make
+git clone https://github.com/csarwi/kickstart.nvim.git "${env:LOCALAPPDATA}\nvim"
