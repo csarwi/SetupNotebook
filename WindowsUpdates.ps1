@@ -5,11 +5,15 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     exit
 }
 
+# NOTE: This is easy :) 
+# TODO: This might actually take a while.
+# this should be here, wonder what happens if I quit
 # Install PSWindowsUpdate if not already installed
 if (-not (Get-Module -ListAvailable -Name PSWindowsUpdate)) {
     Write-Host "Installing PSWindowsUpdate module..."
     Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
     Install-Module -Name PSWindowsUpdate -Force -AllowClobber
+
 }
 
 # Import the module

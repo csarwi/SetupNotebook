@@ -12,7 +12,7 @@ foreach ($key in $autostartRegistryKeys) {
         Remove-ItemProperty -Path $key -Name $fortiClientKey.PSChildName
     }
 }
-
+ 
 # 2. Make hidden files and folders visible
 $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
 Set-ItemProperty -Path $regPath -Name Hidden -Value 1     # Make hidden files visible

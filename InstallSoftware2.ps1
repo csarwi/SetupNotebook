@@ -8,7 +8,7 @@ $files = @(
     @{ Url = "https://om-apps.com/csa/om_software/swyx.msi?key=soonnew123"; FileName = "swyx.msi" }
     @{ Url = "https://om-apps.com/csa/om_software/snagitde.exe?key=soonnew123"; FileName = "snagitde.exe" }
     @{ Url = "https://om-apps.com/csa/om_software/watchguard.exe?key=soonnew123"; FileName = "watchguard.exe" }
-    @{ Url = "https://dl.google.com/chrome/install/latest/chrome_installer.exe"; FileName = "chrome_installer.exe}
+    @{ Url = "https://dl.google.com/chrome/install/latest/chrome_installer.exe"; FileName = "chrome_installer.exe"}
     @{ Url = "https://om-apps.com/csa/om_software/CitrixWorkspaceApp.exe?key=soonnew123"; FileName = "CitrixWorkspaceApp.exe" }
     @{ Url = "https://c.1password.com/dist/1P/win8/1PasswordSetup-latest.msixbundle"; FileName = "1PasswordSetup.msixbundle" }
     @{ Url = "https://download.teamviewer.com/download/TeamViewer_Setup_x64.exe"; FileName = "TeamViewer_Setup_x64.exe" }
@@ -24,7 +24,6 @@ foreach ($file in $files) {
     Write-Host "Downloading $($file.FileName) using BITS..."
     Start-BitsTransfer -Source $file.Url -Destination $destination
 }
-
 
 # Install each file
 foreach ($file in $files) {

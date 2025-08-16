@@ -5,7 +5,7 @@
 & choco install nerd-fonts-firacode
 & choco install oh-my-posh
 & choco install nerd-fonts-cascadiacode
-
+& choco install warp-terminal
 
 git config --global user.name "Reto Wietlisbach"
 git config --global user.email = "rwietlisbach@creativ.ch"
@@ -14,13 +14,14 @@ git config --global user.email = "rwietlisbach@creativ.ch"
 $urlFilePilot = 'https://filepilot.tech/download/latest'
 $tempPathFilePilot = "$ENV"
 
+Install-Module -Name PSScriptAnalyzer -Scope CurrentUser -Force
 
 Write-Host "Set github user.name and user.email"
 
 if(-not (Test-Path "C:\src"))
 {
-    mkdir C:\src
-    Write-Host "Created C:\src"
+	mkdir C:\src
+	Write-Host "Created C:\src"
 }
 Write-Host "C:\src already existed" -ForegroundColor Yellow
 
@@ -42,25 +43,31 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Tools-All -
 
 
 #make taskbar dissapear automatically. 
-    # Safer toggle with backup + validation
-    $Path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3'
-    $Name = 'Settings'
+# Safer toggle with backup + validation
+$Path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3'
+$Name = 'Settings'
 
-    # Ensure value exists and is binary
-    $item = Get-ItemProperty -Path $Path -Name $Name -ErrorAction Stop
-    if (-not ($item.$Name -is [byte[]])) { throw "Unexpected type: $Name is not REG_BINARY." }
+# Ensure value exists and is binary
+$item = Get-ItemProperty -Path $Path -Name $Name -ErrorAction Stop
+if (-not ($item.$Name -is [byte[]]))
+{ throw "Unexpected type: $Name is not REG_BINARY." 
+}
 
-    # Backup current bytes so you can undo
-    $backup = $item.$Name.Clone()
-    $backup | Set-Content -Encoding Byte -Path "$env:TEMP\StuckRects3-Settings.backup.bin"
+# Backup current bytes so you can undo
+$backup = $item.$Name.Clone()
+$backup | Set-Content -Encoding Byte -Path "$env:TEMP\StuckRects3-Settings.backup.bin"
 
-    # Flip byte 8: 3 = autohide ON, 2 = OFF
-    $bytes = $item.$Name
-    $bytes[8] = if ($bytes[8] -eq 3) { 2 } else { 3 }
+# Flip byte 8: 3 = autohide ON, 2 = OFF
+$bytes = $item.$Name
+$bytes[8] = if ($bytes[8] -eq 3)
+{ 2 
+} else
+{ 3 
+}
     
-    # Write back and restart Explorer
-    Set-ItemProperty -Path $Path -Name $Name -Value $bytes
-    Stop-Process -Name explorer -Force
+# Write back and restart Explorer
+Set-ItemProperty -Path $Path -Name $Name -Value $bytes
+Stop-Process -Name explorer -Force
 
 
 Import-Module BitsTransfer
