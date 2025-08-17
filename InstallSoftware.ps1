@@ -1,4 +1,30 @@
-﻿# Create download directory
+﻿# List of applications to install via Chocolatey
+$applications = @(
+    'GoogleChrome',
+    'git.install',
+    'notepadplusplus.install',
+    '7zip.install',
+    'vscode.install',
+    'zoom',
+    'winscp.install'
+
+)
+
+# Install each application from Chocolatey
+foreach ($app in $applications) {
+    Write-Host "Installing $app..."
+    choco install $app -y
+}
+
+Write-Host "All applications have been installed."
+
+# Download and install latest FilePilot
+$Url = "https://filepilot.tech/download/latest"
+$Installer = "$env:TEMP\FilePilotInstaller.exe"
+Start-BitsTransfer -Source $Url -Destination $Installer
+Start-Process $Installer -Wait
+
+# Create download directory
 $DownloadPath = "$env:TEMP\Installers"
 New-Item -ItemType Directory -Path $DownloadPath -Force | Out-Null
 
@@ -17,7 +43,6 @@ $files = @(
     @{ Url = "https://software.sonicwall.com/GlobalVPNClient/184-011921-00_REV_A_GVCSetup64.exe"; FileName = "GVCSetup64.exe" }
 )
 
-# Download files
 # Download files using BITS
 foreach ($file in $files) {
     $destination = Join-Path $DownloadPath $file.FileName

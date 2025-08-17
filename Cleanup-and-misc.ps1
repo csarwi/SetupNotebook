@@ -1,17 +1,20 @@
-﻿# 1. Remove FortiClient from Autostart (check registry for startup keys)
-$autostartRegistryKeys = @(
-    "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run",
-    "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run",
-    "HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Run"
-)
+﻿# Set FortiClient Service Scheduler (FA_Scheduler) to Manual start
+$serviceName = "FA_Scheduler"
 
-foreach ($key in $autostartRegistryKeys) {
-    $fortiClientKey = Get-ItemProperty -Path $key | Where-Object { $_.PSChildName -like "*FortiClient*" }
-    if ($fortiClientKey) {
-        Write-Host "Found FortiClient autostart entry, removing it..."
-        Remove-ItemProperty -Path $key -Name $fortiClientKey.PSChildName
+try {
+    # Check if the service exists
+    $service = Get-Service -Name $serviceName -ErrorAction Stop
+    
+    if ($service) {
+        # Change startup type to Manual
+        Set-Service -Name $serviceName -StartupType Manual
+        Write-Output "Service '$serviceName' was set to Manual successfully."
     }
 }
+catch {
+    Write-Output "Error: Service '$serviceName' not found or could not be modified."
+}
+
  
 # 2. Make hidden files and folders visible
 $regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"

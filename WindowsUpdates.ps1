@@ -5,10 +5,8 @@ if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     exit
 }
 
-# NOTE: This is easy :) 
-# TODO: This might actually take a while.
-# this should be here, wonder what happens if I quit
-# Install PSWindowsUpdate if not already installed
+# NOTE: This might actually take a while :) 
+
 if (-not (Get-Module -ListAvailable -Name PSWindowsUpdate)) {
     Write-Host "Installing PSWindowsUpdate module..."
     Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
@@ -51,6 +49,4 @@ do {
 } while ((Get-WindowsUpdate -AcceptAll -IgnoreReboot).Count -gt 0)
 
 Write-Host "`n✅ All updates installed!"
-
-
 Write-Host "In the Windows "Updates"-GUI it might still list many updates; just Click 'Download & Install'. It will then realise that those are actually already installed."
