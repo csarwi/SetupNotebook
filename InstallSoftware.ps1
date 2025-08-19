@@ -30,12 +30,12 @@ New-Item -ItemType Directory -Path $DownloadPath -Force | Out-Null
 
 # Define download list (URL, filename)
 $files = @(
-    @{ Url = "https://om-apps.com/csa/om_software/sophosSetup.exe?key=soonnew123"; FileName = "sophosSetup.exe" }
-    @{ Url = "https://om-apps.com/csa/om_software/swyx.msi?key=soonnew123"; FileName = "swyx.msi" }
-    @{ Url = "https://om-apps.com/csa/om_software/snagitde.exe?key=soonnew123"; FileName = "snagitde.exe" }
-    @{ Url = "https://om-apps.com/csa/om_software/watchguard.exe?key=soonnew123"; FileName = "watchguard.exe" }
+    @{ Url = "https://om-apps.com/csa/om_software/sophosSetup.exe"; FileName = "sophosSetup.exe" }
+    @{ Url = "https://om-apps.com/csa/om_software/swyx.msi"; FileName = "swyx.msi" }
+    @{ Url = "https://om-apps.com/csa/om_software/snagitde.exe"; FileName = "snagitde.exe" }
+    @{ Url = "https://om-apps.com/csa/om_software/watchguard.exe"; FileName = "watchguard.exe" }
     @{ Url = "https://dl.google.com/chrome/install/latest/chrome_installer.exe"; FileName = "chrome_installer.exe"}
-    @{ Url = "https://om-apps.com/csa/om_software/CitrixWorkspaceApp.exe?key=soonnew123"; FileName = "CitrixWorkspaceApp.exe" }
+    @{ Url = "https://om-apps.com/csa/om_software/CitrixWorkspaceApp.exe"; FileName = "CitrixWorkspaceApp.exe" }
     @{ Url = "https://c.1password.com/dist/1P/win8/1PasswordSetup-latest.msixbundle"; FileName = "1PasswordSetup.msixbundle" }
     @{ Url = "https://download.teamviewer.com/download/TeamViewer_Setup_x64.exe"; FileName = "TeamViewer_Setup_x64.exe" }
     @{ Url = "https://links.fortinet.com/forticlient/win/vpnagent"; FileName = "FortiClientVPNInstaller.exe" }
