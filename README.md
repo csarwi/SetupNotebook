@@ -28,12 +28,13 @@ Welcome, brave soul, to **SetupNotebook** — your one-stop shop for turning a f
    ```
 
    c) Full of endorphins and happiness, let’s add some actual software to your life:
-
+   *(Remember, we’re still in elevated mode!)*
+   
    ```powershell
    & .\InstallSoftware.ps1
    ```
 
-   *(Remember, we’re still in elevated mode!)*
+ 
 
    d) And to wrap things up, a little cleanup and some extra goodies:
 
