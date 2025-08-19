@@ -3,7 +3,7 @@ $vsCodePath = Get-Command "code" -ErrorAction SilentlyContinue
 
 if (-not $vsCodePath) {
     Write-Host "Visual Studio Code is not installed on this machine. Install it ..."
-    & choco install vscode
+    & choco install vscode.install
 }
 
 # List of VSCode extensions to install
