@@ -11,7 +11,7 @@ Welcome, brave soul, to **SetupNotebook** — your one-stop shop for turning a f
 
    ```powershell
    Set-ExecutionPolicy RemoteSigned
-````
+   ```
 
 2. **Since you’re already elevated (fancy!)**, let’s go on a little adventure:
 
@@ -54,8 +54,3 @@ There are other scripts in this repo too. Feel free to try them out...
 ---
 
 Happy scripting! 🛠️
-
-```
-
-Do you want me to also make the code blocks more *copy-paste friendly* (like including `.\` in all script calls) or keep them playful like you had?
-```
