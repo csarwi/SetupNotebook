@@ -9,6 +9,7 @@
 & choco install nerd-fonts-cascadiacode
 & choco install warp-terminal
 & choco install fzf
+& chocho install obs-studio
 
 git config --global user.name "Reto Wietlisbach"
 git config --global user.email = "rwietlisbach@creativ.ch"
