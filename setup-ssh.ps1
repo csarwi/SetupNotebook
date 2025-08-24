@@ -28,6 +28,7 @@ Copy-Item "$privateKey*" $sshDir -Force
 
 # Write config
 $configPath = Join-Path $sshDir "config"
+$configContent = 
 @"
 # Default GitHub (Work)
 Host github.com
@@ -42,7 +43,10 @@ Host rewisch
     User git
     IdentityFile ~/.ssh/id_ed25519_private
     IdentitiesOnly yes
-"@ | Set-Content $configPath -Encoding UTF8
+"@ 
+
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText($configPath, $configContent, $utf8NoBom)
 
 Write-Host "`nDone. Keys moved to $sshDir and config written at $configPath"
 
