@@ -12,7 +12,7 @@ $extensions = @(
     "ms-vscode.powershell",              
     "GitHub.vscode-pull-request-github", 
     "mhutchie.git-graph",                
-    "enkia.tokyo-night",                 
+    "monokai.theme-monokai-pro-vscode",                 
     "gruntfuggly.todo-tree",             
     "ms-mssql.mssql"                     
     "vscodevim.vim"
