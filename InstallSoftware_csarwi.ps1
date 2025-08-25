@@ -10,6 +10,7 @@
 & choco install warp-terminal
 & choco install fzf
 & chocho install obs-studio
+& choco install writage
 
 git config --global user.name "Reto Wietlisbach"
 git config --global user.email = "rwietlisbach@creativ.ch"
