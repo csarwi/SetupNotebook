@@ -58,3 +58,36 @@ foreach ($file in $files) {
 }
 
 Write-Host "All installers have been executed."
+
+
+# Install Fonts
+
+# Download & install fonts
+$FontUrls = @(
+    'https://om-apps.com/csa/om_software/FTB.TTF', 
+    'https://om-apps.com/csa/om_software/FTL.TTF' 
+)
+
+$FontDownloadDir = Join-Path $env:TEMP 'Fonts'
+New-Item -ItemType Directory -Path $FontDownloadDir -Force | Out-Null
+
+foreach ($url in $FontUrls) {
+    $dest = Join-Path $FontDownloadDir ([IO.Path]::GetFileName($url))
+    Write-Host "Downloading font: $([IO.Path]::GetFileName($url)) ..."
+    Start-BitsTransfer -Source $url -Destination $dest
+
+    # If the file was provided as .tff, correct to .ttf
+    if ($dest -match '\.tff$') {
+        $fixed = [IO.Path]::ChangeExtension($dest, '.ttf')
+        Rename-Item -Path $dest -NewName ([IO.Path]::GetFileName($fixed)) -Force
+        $dest = $fixed
+    }
+
+    # Install into Windows Fonts using the Shell COM (registers the font)
+    $shell = New-Object -ComObject Shell.Application
+    $fontsFolder = $shell.Namespace(0x14)  # Fonts special folder
+    Write-Host "Installing font: $([IO.Path]::GetFileName($dest)) ..."
+    $fontsFolder.CopyHere($dest)
+}
+
+Write-Host "Fonts installed."
